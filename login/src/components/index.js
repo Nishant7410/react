@@ -14,7 +14,9 @@ export function Button(props)
 export function Div(props)
 {
     return(
+        <div>
           <li>{props.name}</li>
-          <button onClick={this.deleteItem(props.key)}>Delete</button> 
+          <button onClick={props.onclick}>Delete</button>
+        </div>
           );
 }

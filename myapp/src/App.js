@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Input,Button} from './components/index.js';
+import {Input,Button,Div} from './components/index.js';
 /*function App() {
   return (
 //    <div className="App">
@@ -84,6 +84,7 @@ class App extends React.Component
     render()
     {
       return (
+        <center>  
       <div>
       <Input place="Todo" value={this.state.value} onChange={this.handleInput}/>
       <Button onClick={this.savetodo}>save</Button>      
@@ -91,14 +92,14 @@ class App extends React.Component
       {this.state.todo.map((item,i)=>
       {
           return (
-         <Div key={i} name={item}>     
-        </Div>        
+         <Div name={item} onclick={this.deleteItem(i)} />            
           );
       })
           
           }
       </ul>          
       </div>
+</center>
       );  
     }
 }
