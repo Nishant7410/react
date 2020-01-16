@@ -2,7 +2,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
 
-const { addUser, removeUser, getUser, getUserInRoom } = require('./users.js');
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 const router = require('./router');
 const app = express();
 
@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
         socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name}, has joined` });
 
         socket.join(user.room);
-        io.to(user.name).emit('roomData', { room: user.room, users: getUserInRoom(user.room) });
+        io.to(user.name).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
         callback();
     });
 
@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
         const user = getUser(socket.id);
 
         io.to(user.room).emit('message', { user: user.name, text: message });
-        io.to(user.room).emit('roomData', { room: user.room, users: getUserInRoom(user.room) });
+        io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
         callback();
     });
     socket.on('disconnect', () => {

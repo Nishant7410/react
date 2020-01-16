@@ -15,3 +15,4 @@ const InfoBar = ({ room }) =>
     </div>
 
 export default InfoBar;
+
